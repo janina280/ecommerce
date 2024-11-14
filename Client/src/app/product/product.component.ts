@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartItemService } from '../cart-items/cart-items.service';
 import { Category } from '../category/category';
 import { CategoryService } from '../category/category.service';
+import {WishListService} from "../wish-list/wish-list.service";
 
 
 @Component({
@@ -34,6 +35,7 @@ export class ProductComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private cartItemService: CartItemService,
+    private wishListService: WishListService,
     private router: Router
   ) {}
 
@@ -78,7 +80,7 @@ export class ProductComponent implements OnInit {
     this.sortOrder = 'desc';
     this.search(); // Trigger search with updated sort order
   }
-  
+
   search() {
     if (this.searchQuery.trim() === '') {
       // If the search query is empty, retrieve all products
@@ -102,7 +104,7 @@ export class ProductComponent implements OnInit {
       );
     }
   }
-  
+
   selectSuggestion(suggestion: string): void {
     this.searchQuery = suggestion;
     this.suggestions = [];
@@ -121,7 +123,7 @@ export class ProductComponent implements OnInit {
     } else {
       this.suggestions = []; // Clear suggestions if search query is empty
     }
-  }  
+  }
 
 
   edit(product: Product) {
@@ -188,6 +190,22 @@ export class ProductComponent implements OnInit {
     );
   }
 
+  addToWishList(product: Product): void {
+    const newWishListItem = {
+      productId: product.id
+    };
+
+    this.wishListService.createWishListItem(newWishListItem).subscribe(
+      createdWishListItem => {
+        console.log('Wish list item created successfully', createdWishListItem);
+        this.router.navigateByUrl('/wish-list');
+      },
+      error => {
+        console.error('Error creating wish list item', error);
+      }
+    );
+  }
+
   showSuggestions() {
     this.isSearchFocused = true;
   }
@@ -200,5 +218,5 @@ export class ProductComponent implements OnInit {
       }
     }, 200); // Adjust the delay as needed (in milliseconds)
   }
-  
+
 }

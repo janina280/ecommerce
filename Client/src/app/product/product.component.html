@@ -85,6 +85,9 @@
       <button mat-icon-button color="primary" *ngIf="currentUser.role === 'USER'" (click)="addToCart(product)">
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
+      <button mat-icon-button color="primary" *ngIf="currentUser.role === 'USER'" (click)="addToWishList(product)">
+        <mat-icon>favorite_border</mat-icon>
+      </button>
       <button mat-icon-button color="primary" *ngIf="currentUser.role === 'ADMIN'" (click)="edit(product)">
         <mat-icon>edit</mat-icon>
       </button>

@@ -22,13 +22,15 @@ import { MatTableModule } from '@angular/material/table';
 import { OrderComponent } from './orders/order/order.component';
 import { CartItemComponent } from './cart-items/cart-item/cart-item.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {WishListComponent} from "./wish-list/wish-list/wish-list.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         OrderComponent,
-        CartItemComponent
+        CartItemComponent,
+        WishListComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
@@ -45,8 +47,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
         AuthModule,
         SharedModule,
         MatIconModule,
-        CommonModule, 
-        MatButtonModule, 
+        CommonModule,
+        MatButtonModule,
         MatCardModule,
         MatInputModule,
         MatTableModule,

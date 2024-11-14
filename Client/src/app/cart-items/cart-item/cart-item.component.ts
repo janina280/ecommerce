@@ -1,4 +1,4 @@
-// cart-item.component.ts
+// wish-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartItem } from '../cart-item';
@@ -120,7 +120,7 @@ export class CartItemComponent implements OnInit {
     this.ordersService.createOrder().subscribe(
       response => {
         console.log('Order created!');
-        
+
         // Navigate to the orders route
         //this.router.navigateByUrl('/cart-items');
         window.location.reload();

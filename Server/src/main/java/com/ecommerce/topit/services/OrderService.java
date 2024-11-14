@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -67,7 +68,7 @@ public class OrderService {
 
     public List<OrderDto> getAllOrders() {
         List<Order> orders = orderRepository.findAll();
-        return OrderDto.convertEntityListToDtoList(orders);
+        return orders.stream().map(OrderDto::new).collect(Collectors.toList());
     }
 
     @Transactional

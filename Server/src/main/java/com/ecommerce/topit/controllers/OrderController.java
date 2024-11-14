@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -30,8 +31,8 @@ public class OrderController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('user:read')")
-    public Map<String, Object> getAllOrders() {
-        return Collections.singletonMap("orders", orderService.getAllOrders());
+    public List<OrderDto> getAllOrders() {
+        return  orderService.getAllOrders();
     }
 
     @DeleteMapping("/cancel/{id}")

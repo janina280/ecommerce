@@ -18,8 +18,7 @@ export class OrderComponent implements OnInit {
   }
 
   private fetchOrders(): void {
-    this.orderService.getAllOrders().subscribe(
-      orders => {
+    this.orderService.getAllOrders().subscribe(orders => {
         this.orders = orders;
       },
       error => {

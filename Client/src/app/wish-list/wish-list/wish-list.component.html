@@ -1,19 +1,7 @@
-<button mat-raised-button id="warm" color="warn" *ngIf="currentUser.role === 'USER'"
-        [disabled]="cartItems.length === 0"
-        (click)="deleteAll()">Empty Cart
-</button>
-<button mat-raised-button color="primary" *ngIf="currentUser.role === 'USER'"
-        [disabled]="cartItems.length === 0"
-        (click)="createOrder()">Checkout
-</button>
-
-<div class="total-cost-box">
-  <span>Total Cost:</span>
-  <span>{{ calculateTotalCost() }}</span>
-</div>
+<button mat-raised-button id="warm" color="warn" *ngIf="currentUser.role === 'USER'" (click)="deleteAll()">Empty list</button>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="cartItems" class="custom-mat-table">
+<table mat-table [dataSource]="wishListItems" class="custom-mat-table">
     <!-- Displaying columns -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
