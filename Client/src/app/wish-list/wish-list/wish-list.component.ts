@@ -5,8 +5,6 @@ import { WishListItem } from '../wish-list-item';
 import { WishListService} from '../wish-list.service';
 import { AuthService } from 'src/app/authentication/auth.service';
 import { ProductService } from 'src/app/product/product.service';
-import { OrderService } from 'src/app/orders/orders.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wish-list',
@@ -23,11 +21,8 @@ export class WishListComponent implements OnInit {
     private wishListService: WishListService,
     private productService: ProductService,
     private authService: AuthService,
-    private ordersService: OrderService,
-    private router: Router
   ) {
     this.formInstance = new FormGroup({
-      "quantity": new FormControl('', Validators.required),
       "productId": new FormControl('', Validators.required),
     });
   }
@@ -57,23 +52,6 @@ export class WishListComponent implements OnInit {
       }
     );
   }
-
-  save(): void {
-    const newWishListItem = new WishListItem(
-      NaN,
-      this.formInstance.value.productId
-    );
-
-    this.wishListService.createWishListItem(newWishListItem).subscribe(
-      createdWishListItem => {
-        this.wishListItems.push(createdWishListItem);
-      },
-      error => {
-        console.error('Error creating wish list item', error);
-      }
-    );
-  }
-
   delete(wishListItemId: number): void {
     this.wishListService.deleteWishListItem(wishListItemId).subscribe(
       response => {

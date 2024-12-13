@@ -1,8 +1,7 @@
-/*
 package com.ecommerce.topit.controllers;
 
-import com.ecommerce.topit.dtos.CartItemDto;
-import com.ecommerce.topit.services.CartItemService;
+import com.ecommerce.topit.dtos.WishListItemDto;
+import com.ecommerce.topit.services.WishListItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -12,42 +11,41 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/cart-items")
+@RequestMapping("/api/wish-list")
 @CrossOrigin(origins = "http://localhost:4200/")
 @PreAuthorize("hasRole('USER')")
 public class WishListController {
 
-    private final CartItemService cartItemService;
+    private final WishListItemService wishListItemService;
 
     @Autowired
-    public WishListController(CartItemService cartItemService) {
-        this.cartItemService = cartItemService;
+    public WishListController(WishListItemService wishListItemService) {
+        this.wishListItemService = wishListItemService;
     }
 
     @GetMapping
     @PreAuthorize("hasAuthority('user:read')")
-    public List<CartItemDto> getAllCartItems() {
-        return cartItemService.getAllCartItems();
+    public List<WishListItemDto> getAllWishListItems() {
+        return wishListItemService.getAllWishLists();
     }
 
     @PostMapping
     @PreAuthorize("hasAuthority('user:create')")
-    public CartItemDto createCartItem(@RequestBody CartItemDto cartItemDto) {
-        return cartItemService.createCartItem(cartItemDto);
+    public WishListItemDto createWishListItem(@RequestBody WishListItemDto wishListItemDto) {
+        return wishListItemService.createWishListItem(wishListItemDto);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('user:delete')")
-    public Map<String, String> deleteCartItem(@PathVariable Long id) {
-        cartItemService.deleteCartItem(id);
-        return Collections.singletonMap("response", "CartItem " + id + " has been deleted.");
+    public Map<String, String> deleteWishListItem(@PathVariable Long id) {
+        wishListItemService.deleteWishListItem(id);
+        return Collections.singletonMap("response", "WishListItem " + id + " has been deleted.");
     }
 
     @DeleteMapping("/all")
     @PreAuthorize("hasAuthority('user:delete')")
-    public Map<String, String> deleteAllCartItems() {
-        cartItemService.deleteAllCartItems();
-        return Collections.singletonMap("response", "All CartItems have been deleted.");
+    public Map<String, String> deleteAllWishListItems() {
+        wishListItemService.deleteAllWishListItems();
+        return Collections.singletonMap("response", "All WishListItems have been deleted.");
     }
 }
-*/

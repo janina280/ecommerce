@@ -10,7 +10,7 @@
         <mat-error *ngIf="formInstance.controls['name'].hasError('required')">Field required</mat-error>
       </mat-form-field>
     </div>
- 
+
     <div class="mt-5">
       <mat-form-field class="fullWidth" appearance="outline">
         <mat-label>Specifications</mat-label>
@@ -32,6 +32,14 @@
         <mat-label>Provider</mat-label>
         <input matInput type="text" name="provider" formControlName="provider">
         <mat-error *ngIf="formInstance.controls['provider'].hasError('required')">Field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-5">
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Delivery method</mat-label>
+        <input matInput type="text" name="deliveryMethod" formControlName="deliveryMethod">
+        <mat-error *ngIf="formInstance.controls['deliveryMethod'].hasError('required')">Field required</mat-error>
       </mat-form-field>
     </div>
 

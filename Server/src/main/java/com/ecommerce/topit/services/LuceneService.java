@@ -54,10 +54,16 @@ public class LuceneService {
         List<Product> products = productRepository.findAll();
         for (Product product : products) {
             indexProduct(product.getId(), product.getSpecifications());
+            indexProduct(product.getId(), product.getDeliveryMethod());
+            indexProduct(product.getId(), product.getName());
+            indexProduct(product.getId(), String.valueOf(product.getCost()));
+            indexProduct(product.getId(),  String.valueOf(product.getStock()));
+            indexProduct(product.getId(), product.getProvider());
+            indexProduct(product.getId(), product.getDescription());
         }
     }
 
-    public void indexProduct(Long productId, String specifications) {
+    public void indexProduct(Long productId, String query) {
         if (writer == null) {
             try {
                 writer = new IndexWriter(index, config);
@@ -67,7 +73,8 @@ public class LuceneService {
         }
         Document doc = new Document();
         doc.add(new StringField("productId", productId.toString(), Field.Store.YES));
-        doc.add(new TextField("specifications", specifications, Field.Store.YES));
+        doc.add(new TextField("query", query, Field.Store.YES));
+        
         try {
             writer.addDocument(doc);
         } catch (IOException e) {

@@ -32,8 +32,8 @@ export class ProductEditDialogComponent implements OnInit {
       "description": new FormControl('', Validators.required),
       "categoryId": new FormControl('', Validators.required),
       "cost": new FormControl('', Validators.required), // Add cost field
-      "image": new FormControl(''),
-      "score": new FormControl('')
+      "score": new FormControl(''),
+      "deliveryMethod": new FormControl('', Validators.required)
     });
 
     this.formInstance.setValue(data);
@@ -60,8 +60,8 @@ export class ProductEditDialogComponent implements OnInit {
       this.formInstance.value.description,
       this.formInstance.value.categoryId,
       this.formInstance.value.cost,
-      "",
       this.formInstance.value.score,
+      this.formInstance.value.deliveryMethod
     );
 
     this.productService.updateProduct(updatedProduct).subscribe(

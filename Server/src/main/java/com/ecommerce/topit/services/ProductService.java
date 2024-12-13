@@ -33,7 +33,7 @@ public class ProductService {
     }
 
     public List<ProductDto> searchProductBySpecifications(String query) {
-        Set<ProductScore> productScores = luceneService.search("specifications", query);
+        Set<ProductScore> productScores = luceneService.search("query", query);
 
         List<Product> productsFromLucene = productRepository.findAllById(
                 productScores.stream()
@@ -75,12 +75,12 @@ public class ProductService {
 
         product.setName(productDto.getName());
         product.setSpecifications(productDto.getSpecifications());
+        product.setDeliveryMethod(productDto.getDeliveryMethod());
         product.setStock(productDto.getStock());
         product.setProvider(productDto.getProvider());
         product.setDescription(productDto.getDescription());
         product.setCategory(category);
         product.setCost(productDto.getCost());
-        product.setImage(productDto.getImage());
 
         var savedProduct = productRepository.save(product);
         luceneService.indexProduct(savedProduct.getId(), savedProduct.getSpecifications());
@@ -96,12 +96,12 @@ public class ProductService {
 
         product.setName(productDto.getName());
         product.setSpecifications(productDto.getSpecifications());
+        product.setDeliveryMethod(productDto.getDeliveryMethod());
         product.setStock(productDto.getStock());
         product.setProvider(productDto.getProvider());
         product.setDescription(productDto.getDescription());
         product.setCategory(category);
         product.setCost(productDto.getCost());
-        product.setImage(productDto.getImage());
 
         luceneService.indexProduct(product.getId(), product.getSpecifications());
 

@@ -1,12 +1,12 @@
 // wish-list.component.ts
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CartItem } from '../cart-item';
-import { CartItemService } from '../cart-items.service';
-import { AuthService } from 'src/app/authentication/auth.service';
-import { ProductService } from 'src/app/product/product.service';
-import { OrderService } from 'src/app/orders/orders.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CartItem} from '../cart-item';
+import {CartItemService} from '../cart-items.service';
+import {AuthService} from 'src/app/authentication/auth.service';
+import {ProductService} from 'src/app/product/product.service';
+import {OrderService} from 'src/app/orders/orders.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart-item',
@@ -18,6 +18,7 @@ export class CartItemComponent implements OnInit {
   cartItems: CartItem[] = [];
   currentUser: any;
   products: any[] = [];
+  driveCost: number = 25;
 
   constructor(
     private cartItemService: CartItemService,
@@ -108,6 +109,9 @@ export class CartItemComponent implements OnInit {
         totalCost += cartItem.quantity * product.cost;
       }
     });
+    if (totalCost!= 0){
+      totalCost+= this.driveCost;
+    }
     return totalCost;
   }
 

@@ -19,7 +19,7 @@ export class CategoryEditDialogComponent implements OnInit {
     private categoryService: CategoryService
   ) {
     this.formInstance = new FormGroup({
-      "id": new FormControl('', Validators.required), 
+      "id": new FormControl('', Validators.required),
       "name": new FormControl('', Validators.required),
       "description": new FormControl('', Validators.required),
     });
@@ -34,9 +34,8 @@ export class CategoryEditDialogComponent implements OnInit {
       this.data.id,
       this.formInstance.value.name,
       this.formInstance.value.description,
-      ""
     );
-  
+
     this.categoryService.updateCategory(updatedCategory).subscribe(
       createdProduct => {
         this.dialogRef.close(createdProduct);

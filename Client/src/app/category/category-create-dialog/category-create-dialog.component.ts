@@ -30,7 +30,6 @@ export class CategoryCreateDialogComponent implements OnInit {
       NaN,
       this.formInstance.value.name,
       this.formInstance.value.description,
-      ""
     );
 
     this.categoryService.createCategory(newCategory).subscribe(

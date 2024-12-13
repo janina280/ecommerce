@@ -31,6 +31,7 @@ export class ProductCreateDialogComponent implements OnInit {
       "description": new FormControl('', Validators.required),
       "cost": new FormControl('', Validators.required),
       "categoryId": new FormControl('', Validators.required),
+      "deliveryMethod": new FormControl('', Validators.required),
     });
   }
 
@@ -55,8 +56,8 @@ export class ProductCreateDialogComponent implements OnInit {
       this.formInstance.value.description,
       this.formInstance.value.categoryId,
       this.formInstance.value.cost,
-      "",
-      0
+      0,
+      this.formInstance.value.deliveryMethod
     );
 
     this.productService.createProduct(newProduct).subscribe(

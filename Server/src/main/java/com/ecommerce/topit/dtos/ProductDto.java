@@ -20,9 +20,9 @@ public class ProductDto {
 
     private String description;
 
-    private Long categoryId;
+    private String deliveryMethod;
 
-    private String image;
+    private Long categoryId;
 
     private double score = -1;
 
@@ -33,9 +33,9 @@ public class ProductDto {
         stock = product.getStock();
         provider = product.getProvider();
         description = product.getDescription();
+        deliveryMethod = product.getDeliveryMethod();
         categoryId = product.getCategory().getId();
         cost = product.getCost();
-        image = product.getImage();
     }
 
     public ProductDto(Product product, double score) {

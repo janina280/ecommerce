@@ -1,6 +1,7 @@
 package com.ecommerce.topit.security.user;
 
 import com.ecommerce.topit.models.ShoppingCart;
+import com.ecommerce.topit.models.WishListItem;
 import com.ecommerce.topit.security.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -35,7 +37,10 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
-
+    
+    @OneToMany(mappedBy = "user")
+    private Set<WishListItem> wishListItems;
+    
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private ShoppingCart shoppingCart;
 

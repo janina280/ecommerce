@@ -20,6 +20,9 @@ public class Product {
     @Column(name = "specifications")
     private String specifications;
 
+    @Column(name = "delivery_method")
+    private String deliveryMethod;
+
     @Column(name = "stock")
     private int stock;
 
@@ -32,13 +35,13 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "image")
-    private String image;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToMany(mappedBy = "product")
     private Set<CartItem> cartItems;
+    
+    @OneToMany(mappedBy = "product")
+    private Set<WishListItem> wishListItems;
 }
